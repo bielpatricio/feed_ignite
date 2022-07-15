@@ -4,6 +4,44 @@ import styles from "./App.module.css";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Post } from "./components/Post/Post";
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      name: "Beatriz Mesquita",
+      avatarUrl: "https://github.com/biamesquitap.png",
+      role: "Frontend Developer",
+    },
+    content: [
+      { type: "parapraph", content: "Fala galeraa 👋" },
+      {
+        type: "parapraph",
+        content:
+          "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+      },
+      { type: "link", content: "jane.design/doctorcare" },
+    ],
+    publishedAt: new Date("2022-07-14 22:32:33"),
+  },
+  {
+    id: 2,
+    author: {
+      name: "Gabriel",
+      avatarUrl: "https://github.com/bielpatricio.png",
+      role: "Full Stack Developer and CEO of PSOFT",
+    },
+    content: [
+      { type: "parapraph", content: "Faaaaaaala deeev 👋" },
+      {
+        type: "parapraph",
+        content: "Estamos abrindo agenda para pegar novos projetos",
+      },
+      { type: "link", content: "jane.design/doctorcare" },
+    ],
+    publishedAt: new Date("2022-06-21 09:01:55"),
+  },
+];
+
 export function App() {
   return (
     <div>
@@ -11,8 +49,16 @@ export function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post />
-          <Post />
+          {posts.map((post) => {
+            return (
+              <Post
+                key={post.id}
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            );
+          })}
         </main>
       </div>
     </div>
